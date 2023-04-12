@@ -1,0 +1,89 @@
+{% extends '../layout.html' %} 
+
+{% block title %}
+ Add New Property
+{% endblock%} 
+
+{% block body %}
+<div class="col-md-9">
+</div>
+
+<div class="card text-center">
+    <div class="card-body">
+        <h5 class="card-title">Special title treatment</h5>
+        <form action="{% url 'addnew' %}" method="post" enctype="multipart/form-data" >
+        <div class="card-body">
+            {% csrf_token %}
+            <input value="{{profile}}" name="real_state" type="hidden" />
+            <div class="form-group">
+              <label class="form-label">
+                <span>Tilte:</span>
+                  {{form.title}}
+              </label>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">
+                  <span>Area:</span>
+                    {{form.area}}
+                </label>
+
+                <label class="form-label">
+                  <span>value per meter:</span>
+                    {{form.vpm}}
+                </label>
+
+                <label class="form-label">
+                  <span>value:</span>
+                    {{form.value}}
+                </label>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">
+                  <span>main image:</span>
+                    {{form.image1}}
+                </label>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">
+                  <span>image:</span>
+                    {{form.image2}}
+                </label>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">
+                  <span>image:</span>
+                    {{form.image3}}
+                </label>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">
+                  <span>image:</span>
+                    {{form.image4}}
+                </label>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">
+                  <span>Category:</span>
+                    {{form.category}}
+                </label>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">
+                  <span>Discription:</span>
+                    {{form.discription}}
+                </label>
+              </div>
+
+              <button type="submit" class="btn btn-primary">Add</button>
+        </div>
+        <form>
+        </div>
+      </div>
+{% endblock %}

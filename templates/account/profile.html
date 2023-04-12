@@ -1,0 +1,144 @@
+{% extends '../layout.html' %}
+
+{% block title %} Account {% endblock  %}
+
+
+{% block body %}
+
+<div class="container light-style flex-grow-1 container-p-y">
+    <h4 class="font-weight-bold py-3 mb-4">Account settings</h4>
+    <div class="card overflow-hidden">
+      <div class="row no-gutters row-bordered row-border-light">
+        <div class="col-md-3 pt-0">
+          <div class="list-group list-group-flush account-settings-links">
+            <a
+              class="list-group-item list-group-item-action active"
+              data-toggle="list"
+              href="#account-general"
+              >General</a
+            >
+            <a
+              class="list-group-item list-group-item-action"
+              data-toggle="list"
+              href="#account-info"
+              >Info</a
+            >
+            <a
+              class="list-group-item list-group-item-action"
+              data-toggle="list"
+              href="#propertys"
+              >propertys</a
+            >
+          </div>
+        </div>
+        <div class="col-md-9">
+          <div class="tab-content">
+            <div class="tab-pane fade active show" id="account-general">
+              <div class="card-body media align-items-center">
+                <img
+                  src="{{profile.image.url}}"
+                  class="d-block ui-w-80"
+                />
+              </div>
+              <hr class="border-light m-0" />
+              <div class="card-body">
+                <div class="form-group">
+                  <label class="form-label">Username</label>
+                  <input
+                    type="text"
+                    class="form-control mb-1"
+                    value="{{profile.username}}"
+                    disabled
+                  />
+                </div>
+                <div class="form-group">
+                  <label class="form-label">E-mail</label>
+                  <input
+                    disabled
+                    type="email"
+                    class="form-control mb-1"
+                    value="{{profile.email}}"
+                  />
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Real State</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    value="{{profile.realstate}}"
+                    disabled
+                  />
+                </div>
+              </div>
+            </div>
+           
+            <div class="tab-pane fade" id="account-info">
+              <div class="card-body pb-2">
+                <div class="form-group">
+                  <label class="form-label">Address</label>
+                  <textarea class="form-control" rows="3" disabled>
+                    {{profile.address}}
+                  </textarea>
+                  </div>
+              </div>
+              <hr class="border-light m-0" />
+              <div class="card-body pb-2">
+                <h6 class="mb-4">Contacts</h6>
+                <div class="form-group">
+                    <a htrf="tel:{{profile.telephone}}">
+                  <label class="form-label">Phone</label>
+                 <span class="fas fa-phone"></span>
+                    </a>
+                </div>
+                <div class="icons-wrapper">
+                <div class="form-group">
+                    <a href="{{profile.website}}">
+                  <label class="form-label">Website</label>
+                  <span class="fa fa-fas fa-link social-icon"></span></a>
+                </div>
+                  <div class="form-group">
+                    <a href="{{profile.instagram}}">
+                    <label class="form-label">Instagram</label>
+                    <span class="fab fa-instagram social-icon"></span></a>
+                  </div>
+                  <div class="form-group">
+                    <a href="https://wa.me/{{profile.whatsapp}}">
+                    <label class="form-label">whatsapp</label>
+                    <span class="fab fa-whatsapp social-icon"></span>
+                </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </form>
+            <div class="tab-pane fade" id="propertys">
+              <div class="card-body pb-2">
+                {% for props in propertys %}
+                <div class="card mb-3" id="property">
+
+                  <a href="{% url 'details' props.id %}">
+                  <img src="{{props.image1.url}}" class="card-img-top" />
+                  <div class="card-body">
+                    <h5 class="card-title">{{props.title}}</h5>
+                    <p class="card-text">
+                      {{props.discription}}
+                    </p>
+                    <p class="card-text">
+                      <small class="text-muted"> last updated in {{prop.updated| timesince}} </small>
+                    </p>
+                  </div>
+                </a>
+                </div>
+                {% empty %}
+                <h3> no property add from you</h3>
+                {% endfor %}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+{% endblock  %}

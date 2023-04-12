@@ -1,0 +1,51 @@
+{% extends '../layout.html' %} 
+
+{% block title %}
+ {{propertys.title}}
+
+{% endblock%} 
+{% block body %}
+
+<div class="details">
+
+  <span class="watchlist-icon">
+
+    <i class="fas fa-bookmark btn btn-primary" id="watchlist" data-id="{{propertys.id}}"></i>
+
+    {% if request.user == propertys.real_state.user %}
+    <form action="{% url 'delete' %}" method="POST">
+    <input type="hidden" value="{{propertys.id}}" name="id" class="fas fa-trash btn btn-primary" />
+    <button type="submit" id="btn-none" style="border:0px;"><i class="fas fa-trash btn btn-primary"></i></button>
+    </form>
+    {% endif %}
+  </span>
+  
+  <img src="{{propertys.image1.url}}" class="img-fluid" />
+
+
+  <div class="image-contiar">
+    <img src="{{propertys.image2.url}}" class="rounded" />
+    <img src="{{propertys.image3.url}}" class="rounded">
+    <img src="{{propertys.image4.url}}" class="rounded" />
+
+    <div class="info">Area: {{propertys.area}}</div>
+    <div class="info">VPM: {{propertys.vpm}}</div>
+    <div class="info">value: {{propertys.value}}</div>
+  </div>
+
+  <p>{{propertys.discription}}</p>
+  <hr>
+  <h3>Real State Info</h3>
+  <address>
+    Real state: {{propertys.real_state}}
+    <br>
+    telephone: {{propertys.real_state.telephone}}
+    <br>
+    <a href="{% url 'profile' propertys.real_state.id %}" class="realstate">
+      more info...
+    </a>
+    </address>
+
+</div>
+
+{% endblock %}

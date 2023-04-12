@@ -1,0 +1,56 @@
+<div class="navbar">
+  <ul class="nav nav-pills">
+    <li class="nav-item">
+      <a
+      
+      {% if '/home/' == request.path %}
+      
+      class="nav-link active" 
+      {% else %}
+      class="nav-link" 
+      {% endif %} 
+
+        aria-current="page" href="{% url 'property' %}"
+        >Home</a
+      >
+    </li>
+  </li>
+  <li class="nav-item">
+    <a 
+    {% if '/' == request.path %}
+    
+    class="nav-link active" 
+    {% else %}
+    class="nav-link" 
+    {% endif %} 
+    href="{% url 'account' %}">account</a>
+  </li>
+
+  <li class="nav-item">
+    <a 
+    {% if '/addnew' == request.path %}
+    
+    class="nav-link active" 
+    {% else %}
+    class="nav-link" 
+    {% endif %} 
+    href="{% url 'addnew' %}">add new property</a>
+  </li>
+  
+  <li class="nav-item dropdown">
+    <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Categorys</a>
+    <ul class="dropdown-menu">
+      {% for cate in categorys %}
+      <li><a class="dropdown-item" href="{% url 'category' cate.id%}">{{cate.name}}</a></li>
+      {% endfor %}
+ 
+    </ul>
+  </li>
+  <li class="nav-item">
+      <a class="nav-link" href="{% url 'logout' %}">logout</a>
+    </li>
+    <li class="nav-item">
+      <h4 class="nav-link">{{request.user}}</h4>
+    </li>
+  </ul>
+</div>

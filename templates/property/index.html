@@ -1,0 +1,57 @@
+{% extends '../layout.html' %}
+
+ {% block title %} Home {% endblock %}
+
+  {% block body %} 
+  
+  {% for prop in propertis %}
+<div class="card mb-3">
+  <a href="{% url 'details' prop.id %}">
+    <img src="{{prop.image1.url}}" class="card-img-top" />
+    <div class="card-body">
+      <h5 class="card-title">{{prop.title}}</h5>
+      <p class="card-text">{{prop.discription}}</p>
+      <p class="card-text">
+        <small class="text-muted">updated in {{prop.updated| timesince}}</small>
+      </p>
+    </div>
+  </a>
+</div>
+
+{% empty %}
+<h2>noting find</h2>
+{% endfor %}
+
+<nav aria-label="Page navigation example">
+  <ul class="pagination justify-content-cente">
+    {% if propertis.has_previous %}
+    <li class="page-item">
+      <a class="page-link" href="?page=1 ">first</a>
+    </li>
+    <li class="page-item">
+      <a class="page-link" href="?page={{propertis.previous_page_number}} "
+        >Previous</a
+      >
+    </li>
+    {% endif %}
+
+    <li class="page-item active" aria-current="page">
+      <a class="page-link">{{propertis.number}}</a>
+    </li>
+
+    {% if propertis.has_next %}
+    <li class="page-item">
+      <a class="page-link" href="?page={{ propertis.next_page_number }}"
+        >Next</a
+      >
+    </li>
+    <li class="page-item">
+      <a class="page-link" href="?page={{ propertis.paginator.num_pages }}"
+        >last</a
+      >
+    </li>
+    {% endif %}
+  </ul>
+</nav>
+
+{% endblock %}

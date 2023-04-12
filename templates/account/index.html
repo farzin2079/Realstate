@@ -1,0 +1,195 @@
+{% extends '../layout.html' %}
+
+{% block title %} account {% endblock  %}
+
+
+{% block body %}
+
+<div class="container light-style flex-grow-1 container-p-y">
+    <h4 class="font-weight-bold py-3 mb-4">Account settings</h4>
+    <div class="card overflow-hidden">
+      <div class="row no-gutters row-bordered row-border-light">
+        <div class="col-md-3 pt-0">
+          <div class="list-group list-group-flush account-settings-links">
+            <a
+              class="list-group-item list-group-item-action active"
+              data-toggle="list"
+              href="#account-general"
+              >General</a
+            >
+            <a
+              class="list-group-item list-group-item-action"
+              data-toggle="list"
+              href="#account-info"
+              >Info</a
+            >
+            <a
+              class="list-group-item list-group-item-action"
+              data-toggle="list"
+              href="#propertys"
+              >propertys</a
+            >
+            <a
+              class="list-group-item list-group-item-action"
+              data-toggle="list"
+              href="#watchlist"
+              >watchlist</a
+            >
+          </div>
+        </div>
+        <div class="col-md-9">
+          <div class="tab-content">
+            <div class="tab-pane fade active show" id="account-general">
+
+              <form action="{% url 'account' %}" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+              <div class="card-body media align-items-center">
+                <img
+                  src="{{profile.image.url}}"
+                  class="d-block ui-w-80"
+                />
+                <div class="media-body ml-4">
+                  <label class="btn btn-outline-primary">
+                    Upload new photo
+                    {{imageField.image}}
+                  </label>
+                  <div class="text-light small mt-1">
+                    Allowed JPG, GIF or PNG. Max size of 800K
+                  </div>
+                </div>
+              </div>
+              <hr class="border-light m-0" />
+              <div class="card-body">
+                <div class="form-group">
+                  <label class="form-label">Username</label>
+                  <input
+                    name="username"
+                    type="text"
+                    class="form-control mb-1"
+                    value="{{profile.username}}"
+                    disabled
+                  />
+                </div>
+                <div class="form-group">
+                  <label class="form-label">E-mail</label>
+                  <input
+                    name="email"
+                    type="email"
+                    class="form-control mb-1"
+                    value="{{profile.email}}"
+                  />
+                </div>
+                <div> E-mail: {{profile.email}} </div>
+                <div class="form-group">
+                  <label class="form-label">Real State</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    value="{{profile.realstate}}"
+                    name="realstate"
+                  />
+                </div>
+              </div>
+              <button type="submit" class="btn btn-primary" >save</button>
+            </div>
+           
+            <div class="tab-pane fade" id="account-info">
+              <div class="card-body pb-2">
+                <div class="form-group">
+                  <label class="form-label">Address</label>
+                  <textarea class="form-control" rows="3" name="address">
+                    {{profile.address}}
+                  </textarea>
+                  </div>
+              </div>
+              <hr class="border-light m-0" />
+              <div class="card-body pb-2">
+                <h6 class="mb-4">Contacts</h6>
+                <div class="form-group">
+                  <label class="form-label">Phone</label>
+                  <input
+                  name="telephone"
+                    type="text"
+                    class="form-control"
+                    value="{{profile.telephone}}"
+                  />
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Website</label>
+                  <input type="text" class="form-control" value="{{profile.website}}" name="website" />
+                  <div class="form-group">
+                    <label class="form-label">Instagram</label>
+                    <input
+                    name="instagram"
+                      type="text"
+                      class="form-control"
+                      value="{{profile.instagram}}"
+                    />
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label">whatsapp number</label>
+                    <input
+                    name="whatsapp"
+                      type="text"
+                      class="form-control"
+                      value="{{profile.whatsapp}}"
+                    />
+                  </div>
+                </div>
+              </div>
+              <button type="submit" class="btn btn-primary" >save</button>
+            </div>
+
+          </form>
+            <div class="tab-pane fade" id="propertys">
+              <div class="card-body pb-2">
+                {% for props in propertys %}
+                <div class="card mb-3" id="property">
+                  <a href="{% url 'details' props.id %}">
+                  <img src="{{props.image1.url}}" class="card-img-top" />
+                  <div class="card-body">
+                    <h5 class="card-title">{{props.title}}</h5>
+                    <p class="card-text">
+                      {{props.discription}}
+                    </p>
+                    <p class="card-text">
+                      <small class="text-muted">Last updated 3 mins ago</small>
+                    </p>
+                  </div>
+                </a>
+                </div>
+                {% empty %}
+                <h3> no property add from you</h3>
+                {% endfor %}
+              </div>
+            </div>
+            <div class="tab-pane fade" id="watchlist">
+              <div class="card-body pb-2">
+                <h6 class="mb-4">watchlist</h6>
+
+                {% for props in watchlist %}
+                <div class="card mb-3" id="property">
+                  <img src="{{props.image1.url}}" class="card-img-top" />
+                  <div class="card-body">
+                    <h5 class="card-title">{{props.title}}</h5>
+                    <p class="card-text">
+                      {{props.discription}}
+                    </p>
+                    <p class="card-text">
+                      <small class="text-muted">Last updated 3 mins ago</small>
+                    </p>
+                  </div>
+                </div>
+                {% empty %}
+                <h3> noting add to watchlist</h3>
+                {% endfor %}
+                
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+{% endblock  %}
