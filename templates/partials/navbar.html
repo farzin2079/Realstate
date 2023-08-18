@@ -1,5 +1,5 @@
-<div class="navbar">
-  <ul class="nav nav-pills">
+<nav class="navbar container-xxl px-3">
+  <ul class="nav nav-underline">
     <li class="nav-item">
       <a
       
@@ -28,7 +28,7 @@
 
   <li class="nav-item">
     <a 
-    {% if '/addnew' == request.path %}
+    {% if '/home/addnew' == request.path %}
     
     class="nav-link active" 
     {% else %}
@@ -49,8 +49,10 @@
   <li class="nav-item">
       <a class="nav-link" href="{% url 'logout' %}">logout</a>
     </li>
-    <li class="nav-item">
-      <h4 class="nav-link">{{request.user}}</h4>
+    <li class="nav-item mt-2">
+      <small class="text-muted">
+        login as {{request.user}}
+      </small>
     </li>
   </ul>
-</div>
+</nav>

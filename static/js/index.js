@@ -1,7 +1,10 @@
 // @ts-nocheck
+document.querySelector("#message").style.left = (innerWidth - 300) / 2;
+
 setTimeout(function(){
     $('#message').fadeOut('slow');
 }, 4000)
+
 
 const watchlist = document.querySelector("#watchlist")
 

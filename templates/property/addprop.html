@@ -5,85 +5,68 @@
 {% endblock%} 
 
 {% block body %}
-<div class="col-md-9">
-</div>
-
-<div class="card text-center">
-    <div class="card-body">
-        <h5 class="card-title">Special title treatment</h5>
+<div class="container-xl">
+        <div class="title fs-5 mb-4">Add New Property</div>
         <form action="{% url 'addnew' %}" method="post" enctype="multipart/form-data" >
-        <div class="card-body">
             {% csrf_token %}
             <input value="{{profile}}" name="real_state" type="hidden" />
-            <div class="form-group">
-              <label class="form-label">
-                <span>Tilte:</span>
-                  {{form.title}}
-              </label>
+            <div class="mb-3">
+              <div class="form-group">
+                <label class="custom-required form-label">Tilte</label>
+                    {{form.title}}
+              </div>
             </div>
 
-            <div class="form-group">
-                <label class="form-label">
-                  <span>Area:</span>
-                    {{form.area}}
-                </label>
 
-                <label class="form-label">
-                  <span>value per meter:</span>
-                    {{form.vpm}}
-                </label>
-
-                <label class="form-label">
-                  <span>value:</span>
-                    {{form.value}}
-                </label>
+            <div class="mb-3 row">
+              <div class="col input-group">
+                {{form.area}}
+                <label class="input-group-text custom-required">Area</label>
+              </div>
+              <div class="col input-group">
+                {{form.vpm}}
+                <span class="input-group-text custom-required">Price Per Meter</span>
+              </div>
+              <div class="col input-group">
+                {{form.value}}
+                <span class="input-group-text custom-required">Total Price</span>
+              </div>
+              
               </div>
 
-              <div class="form-group">
-                <label class="form-label">
-                  <span>main image:</span>
-                    {{form.image1}}
-                </label>
+              <div class="mb-3">
+                <label class="form-label">Main Image</label>
+                {{form.image1}}
               </div>
 
-              <div class="form-group">
-                <label class="form-label">
-                  <span>image:</span>
-                    {{form.image2}}
-                </label>
+              
+              <div class="mb-3">
+                <label class="form-label custom-required">Category</label>
+                {{form.category}}
+              </div>
+              
+              <div class="row mb-3 text-center">
+                <div class="col-12">
+                  <label class="form-label">Images</label>
+                </div>
+                <div class="col">
+                  {{form.image2}}
+                </div>
+  
+                <div class="col">
+                  {{form.image3}}
+                </div>
+  
+                <div class="col">
+                  {{form.image4}}
+                </div>
+              </div>
+              <div class="mb-3">
+                <label class="form-label">Discription</label>
+                {{form.discription}}
               </div>
 
-              <div class="form-group">
-                <label class="form-label">
-                  <span>image:</span>
-                    {{form.image3}}
-                </label>
-              </div>
-
-              <div class="form-group">
-                <label class="form-label">
-                  <span>image:</span>
-                    {{form.image4}}
-                </label>
-              </div>
-
-              <div class="form-group">
-                <label class="form-label">
-                  <span>Category:</span>
-                    {{form.category}}
-                </label>
-              </div>
-
-              <div class="form-group">
-                <label class="form-label">
-                  <span>Discription:</span>
-                    {{form.discription}}
-                </label>
-              </div>
-
-              <button type="submit" class="btn btn-primary">Add</button>
-        </div>
+              <button type="submit" class="ui-desing mt-4">Add</button>
         <form>
-        </div>
-      </div>
+    </div>
 {% endblock %}

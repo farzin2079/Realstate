@@ -13,7 +13,7 @@ from .models import Property, Category
 @login_required(login_url='/login')
 def index(request):
     prop = Property.objects.order_by("-updated").all()
-    paginator = Paginator(prop , 10)
+    paginator = Paginator(prop , 12)
     page_num = request.GET.get('page')
     page_objs = paginator.get_page(page_num)
 

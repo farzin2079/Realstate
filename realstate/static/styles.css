@@ -1,28 +1,29 @@
-body{
-    background: #eee
+main {
+    min-height: 70vh;
 }
-div.navbar,
-nav.navbar.sticky-bottom.bg-light {
+.custom-required::after {
+    content: '*';
+    color: red;
+}
+
+.custom-card-title {
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    display: -webkit-box!important;
+    overflow: hidden;
+}
+
+nav.navbar,
+nav.navbar.sticky-bottom {
     background-color: #ddd !important;
     color: #000;
 }
-.nav-pills .nav-link.active{
-    background-color: #000 ;
-    color: #ddd ;
+.nav-link{
+    color: black;
 }
-.nav-pills .nav-link{
-    color: #000;
-    margin: 10px 10px;
-}
-.nav-pills .nav-link:hover{
-    border: 1px solid #ddd;
-}
-div.card.overflow-hidden{
-    padding: 20px;
-}
-.list-group-item.list-group-item-action.active{
-    background-color: #999 ;
-    color: #fff ;
+.nav-underline .nav-link.active {
+    color: #000099;
+    font-weight: normal;
 }
 img.d-block.ui-w-80{
     border-radius: 10%;
@@ -42,10 +43,6 @@ img.d-block.ui-w-80{
 }
 .social-icon{
     width: 50px;
-}
-div.card.mb-3{
-    max-width: 70%;
-    margin: 40px auto;
 }
 div.card.mb-3 a{
     text-decoration: none;
@@ -96,11 +93,33 @@ div.card.mb-3 img{
     word-wrap: wrap;
     word-break: break-all;
 }
-div.card.text-center{
-    width: 70%;
-    margin: 40px auto;
-}
 .watchlist-icon{
     position: relative;
     left: 450px;
 }
+button.ui-desing {
+    padding: 1.3em 3em;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 2.5px;
+    font-weight: 500;
+    color: #fff;
+    background-color: #000;
+    border: none;
+    border-radius: 45px;
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease 0s;
+    cursor: pointer;
+    outline: none;
+  }
+  
+button.ui-desing:hover {
+    background-color: #23c483;
+    box-shadow: 0px 15px 20px rgba(46, 229, 157, 0.4);
+    color: #fff;
+    transform: translateY(-7px);
+  }
+  
+button.ui-desing:active {
+    transform: translateY(-1px);
+  }
